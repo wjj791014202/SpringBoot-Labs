@@ -2,6 +2,13 @@ spring:
   application:
     name: user-service-provider
 
+  # datasource 数据源配置内容
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/test?useSSL=false&useUnicode=true&characterEncoding=UTF-8
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: root3306
+
 # dubbo 配置项，对应 DubboConfigurationProperties 配置类
 dubbo:
   # Dubbo 应用配置

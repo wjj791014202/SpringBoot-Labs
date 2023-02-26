@@ -11,6 +11,6 @@ public interface UserService {
      * @param id 用户编号
      * @return 用户信息
      */
-    String get(Integer id);
+    User get(Integer id);
 
 }

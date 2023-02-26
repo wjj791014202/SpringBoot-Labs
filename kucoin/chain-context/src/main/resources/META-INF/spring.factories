@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+	com.kucoin.starter.chaincontext.autoconfig.ChainContextAutoConfiguration,\
+	com.kucoin.starter.chaincontext.feign.ChainContextFeignAutoConfiguration

@@ -11,13 +11,13 @@ logging:
     max-size: 10MB # 日志文件的最大大小。默认为 10MB 。
 
   # 日志级别
-  level:
-    cn:
-      iocoder:
-        springboot:
-          lab37:
-            loggingdemo:
-              controller: DEBUG
+#  level:
+#    cn:
+#      iocoder:
+#        springboot:
+#          lab37:
+#            loggingdemo:
+#              controller: DEBUG
 
 management:
   endpoints:

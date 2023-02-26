@@ -1,6 +1,28 @@
 spring:
   application:
     name: demo-application # 应用名
+  # Spring Security 配置项，对应 SecurityProperties 配置类
+  security:
+    # 配置默认的 InMemoryUserDetailsManager 的用户账号与密码。
+    user:
+      name: user # 账号
+      password: user # 密码
+      roles: ADMIN # 拥有角色
+  shardingsphere:
+    dataSource:
+      names: test
+      test:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/test?characterEncoding=utf-8
+        username: root
+        password: root3306
+        maximumPoolSize: 30
+        minimumIdle: 20
+    sharding:
+      tables:
+        position:
+          actual-data-nodes: test.position
 
 management:
   endpoints:
@@ -8,7 +30,38 @@ management:
     web:
       exposure:
         include: '*' # 需要开放的端点。默认值只打开 health 和 info 两个端点。通过设置 * ，可以开放所有端点。
-
+  info:
+    # EnvironmentInfoContributor 的配置项
+    env:
+      enabled: true
+  health:
+    # DiskSpaceHealthIndicator 配置项，对应 DiskSpaceHealthIndicatorProperties
+    diskspace:
+      enabled: true # 是否开启。默认为 true 开启。
+      path: . # 目录。默认为 . 当前目录。
+      threshold: # 剩余空间的阀值。默认为 10M 。
+  endpoint:
+    # Health 端点配置项，对应 HealthProperties 配置类
+    health:
+      enabled: true # 是否开启。默认为 true 开启。
+      show-details: ALWAYS # 何时显示完整的健康信息。默认为 NEVER 都不展示。可选 WHEN_AUTHORIZED 当经过授权的用户；可选 ALWAYS 总是展示。
+      status:
+        http-mapping: # 设置不同健康状态对应的响应状态码
+          DOWN: 503
+        order: DOWN, OUT_OF_SERVICE, UP, UNKNOWN # 状态排序。  
+    info:
+      enabled: true
   metrics:
     tags: # 通用标签
       application: ${spring.application.name}
+      
+server:
+  port: 8082
+
+mybatis.config-location: classpath:META-INF/mybatis-config.xml
+
+
+
+
+
+

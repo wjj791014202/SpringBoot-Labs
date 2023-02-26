@@ -54,6 +54,11 @@
             <artifactId>feign-spring4</artifactId>
             <version>11.0</version>
         </dependency>
+        <dependency>
+            <groupId>cn.iocoder.springboot.labs</groupId>
+            <artifactId>gray</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
 </project>

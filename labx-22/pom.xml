@@ -15,6 +15,7 @@
         <module>labx-22-scn-eureka-server-standalone</module>
         <module>labx-22-scn-eureka-demo01-provider</module>
         <module>labx-22-scn-eureka-demo01-consumer</module>
+        <module>labx-22-scn-eureka-demo01-zuul</module>
 
         <module>labx-22-scn-eureka-server-cluster</module>
         <module>labx-22-scn-eureka-demo02-provider</module>

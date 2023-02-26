@@ -1,5 +1,6 @@
 package cn.iocoder.springboot.lab39.skywalkingdemo.consumerdemo.controller;
 
+import cn.iocoder.springboot.lab39.skywalkingdemo.api.User;
 import cn.iocoder.springboot.lab39.skywalkingdemo.api.UserService;
 import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +16,7 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("/get")
-    public String  get(@RequestParam("id") Integer id) {
+    public User get(@RequestParam("id") Integer id) {
         return userService.get(id);
     }
 

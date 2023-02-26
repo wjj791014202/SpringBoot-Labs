@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+	com.kucoin.starter.eureka.KucoinEurekaConfigutaion,com.kucoin.starter.eureka.EurekaSecurity
