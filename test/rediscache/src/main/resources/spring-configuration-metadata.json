@@ -1,0 +1,68 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "com.kucoin.starter.rediscache.KucoinCacheProperties",
+      "name": "kucoin.cache",
+      "type": "com.kucoin.starter.rediscache.KucoinCacheProperties"
+    },
+    {
+      "sourceType": "com.kucoin.starter.rediscache.KucoinCacheProperties",
+      "name": "kucoin.cache.lettuce",
+      "type": "com.kucoin.starter.rediscache.KucoinCacheProperties$Lettuce"
+    },
+    {
+      "sourceType": "com.kucoin.starter.rediscache.KucoinCacheProperties",
+      "name": "kucoin.cache.notify",
+      "type": "com.kucoin.starter.rediscache.KucoinCacheProperties$Notify"
+    },
+    {
+      "sourceType": "com.kucoin.starter.rediscache.KucoinCacheProperties",
+      "name": "kucoin.cache.serializer",
+      "type": "com.kucoin.starter.rediscache.KucoinCacheProperties$SerializerType"
+    },
+    {
+      "sourceType": "com.kucoin.starter.rediscache.KucoinCacheProperties",
+      "name": "kucoin.cache.two-level",
+      "type": "com.kucoin.starter.rediscache.KucoinCacheProperties$TwoLevel"
+    }
+  ],
+  "properties": [
+    {
+      "sourceType": "com.kucoin.starter.rediscache.KucoinCacheProperties$Lettuce",
+      "defaultValue": 10,
+      "name": "kucoin.cache.lettuce.periodic-refresh-in-seconds",
+      "type": "java.lang.Long"
+    },
+    {
+      "sourceType": "com.kucoin.starter.rediscache.KucoinCacheProperties$Lettuce",
+      "defaultValue": 120,
+      "name": "kucoin.cache.lettuce.refresh-triggers-timeout-in-seconds",
+      "type": "java.lang.Long"
+    },
+    {
+      "sourceType": "com.kucoin.starter.rediscache.KucoinCacheProperties$Notify",
+      "name": "kucoin.cache.notify.topic",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.kucoin.starter.rediscache.KucoinCacheProperties$Notify",
+      "defaultValue": "CHANNEL",
+      "name": "kucoin.cache.notify.type",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.kucoin.starter.rediscache.KucoinCacheProperties$SerializerType",
+      "defaultValue": "fastjson",
+      "name": "kucoin.cache.serializer.value",
+      "description": "值序列化方式",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.kucoin.starter.rediscache.KucoinCacheProperties$TwoLevel",
+      "defaultValue": false,
+      "name": "kucoin.cache.two-level.enabled",
+      "type": "java.lang.Boolean"
+    }
+  ]
+}

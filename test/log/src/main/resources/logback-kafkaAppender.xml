@@ -1,0 +1,81 @@
+<included>
+    <springProperty scope="context" name="kafkaBootstrapServers" source="kucoin.logback.kafka.bootstrap-servers" />
+    <springProperty scope="context" name="springAppName" source="spring.application.name" />
+    <springProperty scope="context" name="kafkaTopic" source="kucoin.logback.kafka.topic" defaultValue="kucoin-logs" />
+    <!-- 打印IP -->
+    <conversionRule conversionWord="ip" converterClass="com.kucoin.starter.log.IPLogConfig" />
+    <!-- 打印hostname -->
+    <conversionRule conversionWord="hostname" converterClass="com.kucoin.starter.log.HostNameLogConfig" />
+
+    <springProperty scope="context" name="logPath" source="logging.path" defaultValue="logs" />
+    <!-- 全局配置userId -->
+    <turboFilter class="com.kucoin.starter.chaincontext.log.UserIdLogbackFilter" />
+    <appender name="KAFKA-APPENDER-FAIL" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${logPath}/kafkaAppender-failed.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${logPath}/kafkaAppender-failed.log.%d{yyyy-MM-dd}.%i</fileNamePattern>
+            <!-- 每个文件最大100M，保留3天历史记录，但所有文件总大小不超过2G -->
+            <maxFileSize>100MB</maxFileSize>
+            <maxHistory>3</maxHistory>
+            <totalSizeCap>2GB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5p %c{32} [${springAppName},%hostname,%ip,%X{X-TraceId:-},%X{X-SpanId:-}] %m%n</pattern>
+            <charset>utf8</charset>
+        </encoder>
+    </appender>
+    <!-- This is the kafkaAppender -->
+    <appender name="KAFKA-APPENDER" class="com.kucoin.starter.log.appender.KafkaAppender">
+        <encoder name="logstash" class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+            <providers>
+                <timestamp/>
+                <loggerName />
+                <threadName />
+                <logLevel />
+                <message />
+                <!--<mdc />-->
+                <pattern>
+                    <pattern>
+                        {"app":"${springAppName}","hostname":"%hostname","user_id":"%X{X-UserId:-}","ip":"%ip", "trace_id":"%X{X-TraceId:-}", "span_id":"%X{X-SpanId:-}"}
+                    </pattern>
+                </pattern>
+                <stackTrace>
+                    <throwableConverter class="net.logstash.logback.stacktrace.ShortenedThrowableConverter">
+                        <maxDepthPerThrowable>12</maxDepthPerThrowable>
+                        <maxLength>4096</maxLength>
+                        <shortenedClassNameLength>20</shortenedClassNameLength>
+                        <exclude>sun\.reflect\..*\.invoke.*</exclude>
+                        <exclude>net\.sf\.cglib\.proxy\.MethodProxy\.invoke</exclude>
+                        <!--<evaluator class="myorg.MyCustomEvaluator"/>-->
+                        <!--<rootCauseFirst>true</rootCauseFirst>-->
+                        <!--<inlineHash>true</inlineHash>-->
+                    </throwableConverter>
+                </stackTrace>
+                <stackHash /> <!--This helps identifying several occurrences of the same error -->
+            </providers>
+
+        </encoder>
+        <topic>${kafkaTopic}</topic>
+        <keyingStrategy class="com.kucoin.starter.log.appender.keying.NoKeyKeyingStrategy" />
+        <deliveryStrategy class="com.kucoin.starter.log.appender.delivery.AsyncKafkaProducerStrategy" />
+
+        <!-- Optional parameter to use a fixed partition -->
+        <!-- <partition>0</partition> -->
+
+        <!-- Optional parameter to include log timestamps into the kafka message -->
+        <!-- <appendTimestamp>true</appendTimestamp> -->
+
+        <!-- each <producerConfig> translates to regular kafka-client config (format: key=value) -->
+        <!-- producer configs are documented here: https://kafka.apache.org/documentation.html#newproducerconfigs -->
+        <!-- bootstrap.servers is the only mandatory producerConfig -->
+        <producerConfig>bootstrap.servers=${kafkaBootstrapServers}</producerConfig>
+        <producerConfig>request.timeout.ms=15000</producerConfig>
+        <producerConfig>max.block.ms=3000</producerConfig>
+        <producerConfig>client.id=producer-${springAppName}</producerConfig>
+        <!-- this is the fallback appender if kafka is not available. -->
+        <appender-ref ref="KAFKA-APPENDER-FAIL" />
+    </appender>
+    <logger name="com.kucoin.starter.log.appender" level="WARN" additivity="false">
+        <appender-ref ref="KAFKA-APPENDER-FAIL" />
+    </logger>
+</included>

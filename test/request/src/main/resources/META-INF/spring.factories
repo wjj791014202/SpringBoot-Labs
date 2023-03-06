@@ -1,0 +1,3 @@
+oorg.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+	com.kucoin.starter.request.mapping.CustomPathPrefixSpringWebMvcConfiguration,\
+	com.kucoin.starter.request.mapping.CustomPathPrefixFeignConfiguration

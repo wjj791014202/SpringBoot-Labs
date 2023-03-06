@@ -8,6 +8,51 @@
     <artifactId>labs-parent</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+        <tomcat.version>8.5.15</tomcat.version>
+        <!-- kucoin properties start -->
+        <kucoin-common.version>2.0.1-SNAPSHOT</kucoin-common.version>
+        <!-- kucoin properties end -->
+        <!-- thirdparty properties start -->
+        <spring-cloud.version>Finchley.SR1</spring-cloud.version>
+        <feign-form.version>3.4.0</feign-form.version>
+        <fastjson.version>1.2.60</fastjson.version>
+        <strman.version>0.4.0</strman.version>
+        <aws-java-sdk.version>1.11.358</aws-java-sdk.version>
+        <swagger2.version>2.9.2</swagger2.version>
+        <commons-lang.version>2.6</commons-lang.version>
+        <commons-collections.version>3.2.2</commons-collections.version>
+        <commons-beanutils.version>1.9.3</commons-beanutils.version>
+        <commons-codec.version>1.11</commons-codec.version>
+        <joda-time.version>2.10</joda-time.version>
+        <elastic-job.version>2.1.5</elastic-job.version>
+        <redisson.version>3.8.2</redisson.version>
+        <maven-release.version>2.5.3</maven-release.version>
+        <sharding-jdbc.version>2.0.3</sharding-jdbc.version>
+        <guava.version>20.0</guava.version>
+        <logback.version>1.2.3</logback.version>
+        <logstash.encoder.version>5.1</logstash.encoder.version>
+        <kafka.version>1.1.0</kafka.version>
+        <lombok.version>1.18.2</lombok.version>
+        <curator.version>2.11.1</curator.version>
+        <kafka.client.version>1.1.0</kafka.client.version>
+        <micrometer.version>1.0.9</micrometer.version>
+        <checkstyle.filepath>checkstyle/kucoin-checkstyle.xml</checkstyle.filepath>
+        <apollo.version>kucoin-1.4.0-SNAPSHOT</apollo.version>
+        <!-- thirdparty properties end -->
+        <!-- springboot properties start -->
+        <mybatis-springboot.version>1.3.2</mybatis-springboot.version>
+        <pagehelper-springboot.version>1.2.5</pagehelper-springboot.version>
+        <jasypt-springboot.version>1.18</jasypt-springboot.version>
+        <jackson.version>2.9.8</jackson.version>
+        <spring.boot.version>2.2.4.RELEASE</spring.boot.version>
+        <spring.cloud.version>Hoxton.SR1</spring.cloud.version>
+        <!-- springboot properties end -->
+    </properties>
+
     <modules>
 
         <!-- Spring Boot 示例 -->
