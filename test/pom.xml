@@ -28,6 +28,7 @@
         <module>shardingjdbc</module>
         <module>swagger</module>
         <module>validator</module>
+        <module>metrics</module>
     </modules>
 
     <dependencyManagement>

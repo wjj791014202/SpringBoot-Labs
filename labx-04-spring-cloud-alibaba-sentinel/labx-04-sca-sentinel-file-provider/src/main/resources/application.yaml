@@ -8,7 +8,7 @@ spring:
       enabled: true # 是否开启。默认为 true 开启
       eager: true # 是否饥饿加载。默认为 false 关闭
       transport:
-        dashboard: 127.0.0.1:7070 # Sentinel 控制台地址
+        dashboard: 127.0.0.1:8080 # Sentinel 控制台地址
       filter:
         url-patterns: /** # 拦截请求的地址。默认为 /*
       # Sentinel 规则的数据源，是一个 Map 类型。key 为数据源名，可自定义；value 为数据源的具体配置
@@ -20,3 +20,5 @@ spring:
             recommendRefreshMs: 3000 # 定时读取实现刷新，默认为 3000 毫秒。
             data-type: json # 数据格式
             rule-type: FLOW # 规则类型
+server:
+  port: 8081
