@@ -65,8 +65,8 @@
         <!-- 引入 Soul 针对 Spring Cloud 的集成的依赖 -->
         <dependency>
             <groupId>org.dromara</groupId>
-            <artifactId>soul-client-springcloud</artifactId>
-            <version>2.1.2-RELEASE</version>
+            <artifactId>soul-spring-boot-starter-client-springcloud</artifactId>
+            <version>2.2.1</version>
         </dependency>
     </dependencies>
 
